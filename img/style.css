@@ -1,0 +1,374 @@
+/* ================================================
+   ✅ RESET GLOBAL
+================================================ */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  background: #fff;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  max-width: 100%;
+  position: relative;
+}
+
+/* ================================================
+   ✅ LAYOUT BASE
+================================================ */
+.row.min-vh-100 {
+  max-height: 100vh;
+  overflow-x: hidden;
+}
+
+.form-column {
+  background: #fff;
+  min-height: 100vh;
+  height: auto;
+  overflow-y: auto;
+  padding-left: 0.5rem;
+}
+
+/* ================================================
+   ✅ ENCABEZADO STICKY
+================================================ */
+.form-header {
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #fff;
+  padding: 1.5rem !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  box-shadow: none !important;
+}
+
+.form-header .form-icon {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+}
+
+#formStepTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-top: 0.75rem;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.5px;
+}
+
+/* ================================================
+   ✅ FORMULARIO INTERNO
+================================================ */
+.card.shadow-sm {
+  box-shadow: none !important;
+  padding: 0 !important;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* ================================================
+   ✅ MULTISTEP
+================================================ */
+.step {
+  display: none;
+}
+
+.step.active {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+  overflow-y: auto;
+  padding-bottom: 80px; /* espacio para footer */
+}
+
+.step.active > .row.g-3 {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-top: 0.5rem;
+}
+
+/* ================================================
+   ✅ MODAL CENTRADO (ESCRITORIO)
+================================================ */
+.modal-backdrop.show {
+  opacity: 0 !important;
+  background: transparent !important;
+}
+
+.modal {
+  display: none;
+  overflow: hidden !important;
+  padding: 0 !important;
+}
+
+.modal.show {
+  display: block !important;
+}
+
+#registroModal.show .modal-dialog {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 100vh !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  max-width: 700px !important;
+  width: 100%;
+  overflow: hidden !important;
+}
+
+#registroModal .modal-content {
+  background: #fff !important;
+  border: none !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 90vh !important;
+  overflow: hidden !important;
+  box-sizing: border-box;
+}
+
+#registroModal .modal-body {
+  flex-grow: 1;
+  padding: 1.5rem !important;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#registroModal .modal-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* ================================================
+   ✅ FOOTER FIJO Y PLANO
+================================================ */
+.form-footer {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1001;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.form-footer .btn {
+  min-width: 110px;
+  font-weight: 500;
+}
+
+/* ================================================
+   ✅ BLOQUEO GLOBAL DE SCROLL HORIZONTAL
+================================================ */
+html, body,
+.modal,
+.modal-dialog,
+.modal-content,
+.modal-body,
+.row,
+.container,
+.container-fluid {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box;
+}
+
+/* ================================================
+   ✅ ANIMACIONES Y TRANSICIONES MODAL + CARRUSEL
+================================================ */
+
+/* Carrusel sin destello */
+.carousel {
+  transition: filter 0.35s ease-in-out, opacity 0.35s ease-in-out;
+  will-change: filter, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  z-index: 1;
+}
+
+.carousel.dimmed {
+  filter: brightness(0.35);
+  opacity: 0.85;
+}
+
+/* Modal encima del carrusel */
+.modal {
+  z-index: 1056 !important;
+  background: transparent !important;
+}
+
+/* Animación fluida de aparición */
+.modal.fade .modal-dialog {
+  transform: translateY(-10px);
+  opacity: 0;
+  transition: transform 0.25s ease-out, opacity 0.25s ease-out;
+  will-change: transform, opacity;
+}
+
+.modal.fade.show .modal-dialog {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Evita repaint del body */
+body.modal-open {
+  overflow-y: hidden !important;
+  padding-right: 0 !important;
+  background: transparent !important;
+}
+
+@media (max-width: 991.98px) {
+  #registroModal.show .modal-dialog {
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100vh !important;       /* altura completa del viewport */
+    display: flex !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+  }
+
+  #registroModal .modal-content {
+    border-radius: 0 !important;
+    height: 100% !important;        /* ocupar todo el modal */
+    display: flex;
+    flex-direction: column;         /* para que footer quede abajo */
+    background-color: #fff !important;
+    overflow: hidden !important;
+  }
+
+  #registroModal .modal-body {
+    flex: 1 1 auto;                 /* ocupa todo el espacio restante */
+    overflow-y: auto !important;    /* scroll interno si hay contenido largo */
+    padding: 1rem !important;
+  }
+
+  .form-footer {
+    flex-shrink: 0;                 /* nunca se encoge */
+    background-color: #fff !important;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    z-index: 1200 !important;
+    width: 100%;
+  }
+
+  /* Botones adaptables */
+  .form-footer .btn {
+    flex: 1;
+    margin: 0 0.25rem;
+    min-width: 80px;
+  }
+}
+
+
+/* === Canvas de firma === */
+#signature-pad {
+  width: 100% !important;     /* Ocupa todo el ancho */
+  max-width: 100% !important; /* Sin límite */
+  height: 250px !important;   /* Más alto por defecto */
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* 📱 En pantallas pequeñas (mantener manejable en móviles) */
+@media (max-width: 768px) {
+  #signature-pad {
+    height: 180px !important;
+  }
+}
+
+/* 💻 En escritorio grande, dar aún más espacio */
+@media (min-width: 992px) {
+  #signature-pad {
+    height: 320px !important;
+  }
+}
+
+
+.carousel-banner {
+  bottom: 0;
+  color: white;
+  background-color: #2f3750; /* Azul oscuro */
+  z-index: 10;
+}
+
+/* ================================================
+   ✅ ESTILOS DEL CARRUSEL (MÓVIL Y ESCRITORIO)
+================================================ */
+
+/* 📱 Estilos de Carrusel en Móvil */
+@media (max-width: 991.98px) {
+  
+  /* 1. Centra el carrusel en el body (cuando el modal no está abierto) */
+  body:not(.modal-open) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* ¡Centrado vertical! */
+    align-items: center;     /* Centrado horizontal */
+    
+    min-height: 100vh;       /* Fallback para navegadores viejos */
+    min-height: 100dvh;      /* ✅ CORRECCIÓN para altura dinámica en móvil */
+
+    padding: 1rem; 
+    box-sizing: border-box;
+    background: #dbe8f5 !important;
+  }
+
+  /* 2. Dale un tamaño definido al carrusel en móvil */
+  #imageCarousel {
+    height: 60vh;       /* Fallback */
+    height: 60dvh;      /* ✅ CORRECCIÓN para altura dinámica en móvil */
+
+    max-height: 450px;  
+    width: 90vw;        
+    border-radius: 12px;
+    overflow: hidden;   
+    position: relative; 
+    flex-shrink: 0;     
+  }
+  
+  /* 3. Asegura que el contenido interno se ajuste */
+  #imageCarousel .carousel-inner,
+  #imageCarousel .carousel-item {
+    height: 100%;
+  }
+}
+/* 💻 Estilos de Carrusel en Escritorio (pantalla completa) */
+@media (min-width: 991.99px) {
+  #imageCarousel {
+    height: 100vh; /* Vuelve a ser pantalla completa */
+    width: 100%;
+    border-radius: 0;
+  }
+
+  #imageCarousel .carousel-inner,
+  #imageCarousel .carousel-item {
+    height: 100%;
+  }
+}
