@@ -3,12 +3,21 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
+    "dev": "astro dev --base=/",
+    "start": "astro dev --base=/",
+    
+    "build": "astro build && touch dist/.nojekyll",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist -r git@github.com:ldadev/registration_app.git -b gh-pages"
   },
   "dependencies": {
+    "@astrojs/node": "^9.5.1",
     "astro": "^5.16.0"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }

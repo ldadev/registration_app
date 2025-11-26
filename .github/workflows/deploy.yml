@@ -1,0 +1,52 @@
+name: Deploy Astro to GitHub Pages
+
+on:
+  push:
+    # Este workflow se ejecuta cuando haces push a la rama 'main'
+    branches:
+      - main 
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Paso 1: Checkout del código
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Necesario para el push a gh-pages
+          token: ${{ secrets.GITHUB_TOKEN }} 
+      
+      # Paso 2: Configurar Node.js (Necesario para npm)
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Usa la versión de Node que requiera tu proyecto
+          cache: npm
+          
+      # Paso 3: Instalar dependencias
+      - name: Install dependencies
+        run: npm install
+        
+      # Paso 4: Ejecutar la compilación de Astro (Crea la carpeta dist)
+      - name: Build Astro project
+        run: npm run build
+        
+      # Paso 5: Crea el archivo .nojekyll (¡Automático!)
+      # Ya no necesitas postbuild en package.json si usas este paso
+      - name: Create .nojekyll file
+        run: touch dist/.nojekyll
+
+      # Paso 6: Desplegar a GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          # Token de GitHub (ya viene por defecto)
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Especifica la rama de despliegue
+          publish_branch: gh-pages
+          # Especifica la carpeta de la que se debe desplegar
+          publish_dir: ./dist
+          # Usa el commit original como mensaje
+          force_orphan: true
